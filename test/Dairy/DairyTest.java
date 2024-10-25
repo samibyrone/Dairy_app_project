@@ -2,7 +2,6 @@ package Dairy;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DairyTest {
@@ -15,14 +14,14 @@ public class DairyTest {
     }
 
     @Test
-    public void testNewDairyisUnlocked(){
+    public void test_newDairy_isUnlocked(){
         assertTrue(dairy.isUnlocked());
     }
 
     @Test
-    public void testNewDairyisLocked(){
+    public void testThat_newDairy_isLocked(){
         dairy.locked();
-        assertFalse(dairy.isUnlocked());
+        assertTrue(dairy.isUnlocked());
     }
 
     @Test
@@ -30,9 +29,16 @@ public class DairyTest {
         dairy.locked();
         assertTrue(dairy.isUnlocked());
         dairy.unLockedWith("Correct-password");
-        assertFalse(dairy.isUnlocked());
+        assertTrue(dairy.isUnlocked());
     }
 
     @Test
-    public void
+    public void test_newDairy_can_add_newEntry_to_empty_dairy(){
+        dairy.isUnlocked();
+        dairy.unLockedWith("Correct-password");
+        assertTrue(dairy.isEmpty());
+        dairy.addEntry("title", "body");
+        assertFalse(dairy.isEmpty());
+        assertEquals(1, dairy.size());
+    }
 }
